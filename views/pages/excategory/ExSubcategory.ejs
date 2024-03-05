@@ -1,0 +1,97 @@
+<%- include('../header') %>
+
+
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 mb-4">
+                <div class="table-responsive ">
+                    <% if(massage.success){ %>
+                        <div id="alertbox" class="alert alert-success">
+                            <%= massage.success %>
+                        </div>
+                        <% } %>
+                            <% if(massage.red){ %>
+                                <div id="alertbox" class="alert alert-danger">
+                                    <%= massage.red %>
+                                </div>
+                                <% } %>
+
+
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Category Name</th>
+                                                <th scope="col">Subcate Name</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Discription</th>
+                                                <th scope="col">image</th>
+                                                <th scope="col">Action</th>
+                                                <!-- Add other table headers based on your data structure -->
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <% exsubcat.map((val,i)=>{i++ %>
+                                                <tr>
+                                                    <td>
+                                                        <%= i %>
+                                                    </td>
+                                                    <td>
+                                                        <%= val.categoryId.cat_name %>
+                                                    </td>
+                                                    <td>
+                                                        <%= val.subcategoryId.subcat_name %>
+                                                    </td>
+                                                    <td>
+                                                        <%= val.product %>
+                                                    </td>
+                                                    <td>
+                                                        <%= val.qty %>
+                                                    </td>
+                                                    <td>
+                                                        <%= val.price %>
+                                                    </td>
+                                                    <td>
+                                                        <%= val.discription %>
+                                                    </td>
+                                                    <td>
+                                                        <img src="<%= val.image %>" alt="" width="100px" height="100px">
+                                                    </td>
+                                                    <td>
+                                                        <a href="/exsubcatedelete?id=<%= val.id %>"
+                                                            class="btn btn-danger text-white">Delete</a>
+                                                        <a href="/exsubcateedit?id=<%= val.id %>"
+                                                            class="btn btn-success text-white">edit</a>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+                                        </tbody>
+
+                                    </table>
+
+
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="/exsubcategoryAdd"><button class="btn btn-success text-white">Add New
+                            ExSubCategory</button></a>
+                </div>
+            </div>
+
+            <!-- Your Contact form HTML here -->
+
+        </div>
+    </div>
+
+    <%- include('../footer') %>
+        <script>
+            setTimeout(function () {
+                let alert = document.getElementById('alertbox')
+                if (alert) {
+                    alert.remove()
+                }
+            }, 2000);
+        </script>

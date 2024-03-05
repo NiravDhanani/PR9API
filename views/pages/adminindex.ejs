@@ -1,0 +1,41 @@
+<%- include('header') %>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 mb-4">
+
+                <div class="d-flex flex-wrap m-3 p-1">
+                <% exsubcat.map((val,i)=>{i++ %>
+                    <div class="card m-2" style="width: 18rem;">
+                        <img src="<%= val.image %>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= val.product %>
+                            </h5>
+                            <span class="p-2 "
+                                style="border-radius: 10px; font-size: 12px;font-weight: 600; background-color: paleturquoise; color:black;">
+                                <%= val.subcategoryId.subcat_name %> segment
+                            </span>
+                            <p class="card-text mt-2">
+                                <%= val.discription %>
+                                    <br> if you want more info about <br>price qty click here
+                            </p>
+                            <a href="/exsubcategory" class="btn btn-primary text-white">For More info</a>
+                        </div>
+                    </div>
+
+                    <% }) %>
+                </div>
+
+
+                        <!-- Your Contact form HTML here -->
+
+            </div>
+        </div>
+        <%- include('footer') %>

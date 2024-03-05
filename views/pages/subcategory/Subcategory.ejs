@@ -1,0 +1,69 @@
+<%- include('../header') %>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 mb-4">
+                <div class="table-responsive ">
+                    <% if(massage.success){ %>
+                        <div id="alertbox" class="alert alert-success"><%= massage.success %></div>
+                     <% } %>
+                     <% if(massage.red){ %>
+                        <div id="alertbox" class="alert alert-danger"><%= massage.red %></div>
+                     <% } %>
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Category Name</th>
+                                <th scope="col">Subcate Name</th>
+                                <th scope="col">Action</th>
+                                <!-- Add other table headers based on your data structure -->
+                            </tr>
+                        </thead>
+
+                        <tbody >
+                            <% subcat.map((val,i)=>{i++ %> 
+                                <tr>
+                                    <td> <%= i %></td>
+                                    <td> <%= val.categoryId.cat_name %></td>
+                                    <td> <%= val.subcat_name %> </td>
+                                    <td>
+                                        <a href="/deletesubcategory?id=<%= val.id %>" class="btn btn-danger text-white">Delete</a>
+                                        <a href="/editsubcategory?id=<%= val.id %>" class="btn btn-success text-white">Edit</a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="/subcategoryAdd"><button class="btn btn-success text-white">Add New SubCategory</button></a>
+                </div>
+            </div>
+
+        
+
+            <!-- Your Contact form HTML here -->
+
+        </div>
+    </div>
+    <%- include('../footer') %>
+
+
+    <script> 
+        setTimeout(function(){
+            let  alert = document.getElementById('alertbox')
+            if(alert){
+                alert.remove()
+            }
+        },2000);
+    </script>

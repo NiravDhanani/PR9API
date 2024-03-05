@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- FontAwesome JS-->
+
+    <script defer src="/public/Assets/plugins/fontawesome/js/all.min.js"></script>
+
+    <!-- App CSS -->
+    <link id="theme-style" rel="stylesheet" href="/public/Assets/css/portal.css">
+    <link rel="stylesheet" href="/public/assets/css/adminstyle.css">
+
+
+    <style>
+        /* Import Font Dancing Script */
+
+
+        /* NavbarTop */
+        .navbar-top {
+            background-color: #fff;
+            color: #333;
+            box-shadow: 0px 4px 8px 0px grey;
+            height: 70px;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            padding-top: 15px;
+            position: absolute;
+            left: 45%;
+        }
+
+        .navbar-top ul {
+            float: right;
+            list-style-type: none;
+            margin: 0;
+            overflow: hidden;
+            padding: 18px 50px 0 40px;
+        }
+
+        .navbar-top ul li {
+            float: left;
+        }
+
+        .navbar-top ul li a {
+            color: #333;
+            padding: 14px 16px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .icon-count {
+            background-color: #ff0000;
+            color: #fff;
+            float: right;
+            font-size: 11px;
+            left: -25px;
+            padding: 2px;
+            position: relative;
+        }
+
+        /* End */
+
+        /* Sidenav */
+        .sidenav {
+            background-color: #fff;
+            color: #333;
+            border-bottom-right-radius: 25px;
+            height: 86%;
+            left: 50;
+            overflow-x: hidden;
+            padding-top: 20px;
+            position: absolute;
+            top: 70px;
+            width: 250px;
+        }
+
+        .profile {
+            margin-bottom: 20px;
+            margin-top: -12px;
+            text-align: center;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px 1px grey;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+
+        .job {
+            font-size: 16px;
+            font-weight: bold;
+            padding-top: 10px;
+        }
+
+        .url,
+        hr {
+            text-align: center;
+        }
+
+        .url hr {
+            margin-left: 20%;
+            width: 60%;
+        }
+
+        .url a {
+            color: #818181;
+            display: block;
+            font-size: 20px;
+            margin: 10px 0;
+            padding: 6px 8px;
+            text-decoration: none;
+        }
+
+        .url a:hover,
+        .url .active {
+            background-color: #e8f5ff;
+            border-radius: 28px;
+            color: #000;
+            margin-left: 14%;
+            width: 65%;
+        }
+
+        /* End */
+
+        /* Main */
+        .main {
+            margin-top: 2%;
+            margin-left: 29%;
+            font-size: 28px;
+            padding: 0 10px;
+            width: 58%;
+        }
+
+        .main h2 {
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .main .card {
+            background-color: #fff;
+            border-radius: 18px;
+            box-shadow: 1px 1px 8px 0 grey;
+            height: auto;
+            margin-bottom: 20px;
+            padding: 20px 0 20px 50px;
+        }
+
+        .main .card table {
+            border: none;
+            font-size: 16px;
+            height: 270px;
+            width: 80%;
+        }
+
+        .edit {
+            position: absolute;
+            color: #e7e7e8;
+            right: 14%;
+        }
+
+        .social-media {
+            text-align: center;
+            width: 90%;
+        }
+
+        .social-media span {
+            margin: 0 10px;
+        }
+
+        .fa-facebook:hover {
+            color: #4267b3 !important;
+        }
+
+        .fa-twitter:hover {
+            color: #1da1f2 !important;
+        }
+
+        .fa-instagram:hover {
+            color: #ce2b94 !important;
+        }
+
+        .fa-invision:hover {
+            color: #f83263 !important;
+        }
+
+        .fa-github:hover {
+            color: #161414 !important;
+        }
+
+        .fa-whatsapp:hover {
+            color: #25d366 !important;
+        }
+
+        .fa-snapchat:hover {
+            color: #fffb01 !important;
+        }
+
+        /* End */
+    </style>
+</head>
+
+<body class="app">
+    <header class="app-header fixed-top">
+        <div class="app-header-inner">
+            <div class="container-fluid py-2">
+                <div class="app-header-content">
+                    <div class="row justify-content-between align-items-center">
+
+
+                        <div class="search-mobile-trigger d-sm-none col">
+                            <i class="search-mobile-trigger-icon fa-solid fa-magnifying-glass"></i>
+                        </div><!--//col-->
+                        <div class="app-search-box col">
+                            <div class="d-flex justify-content-center">
+                                <h1>Profile</h1>
+                            </div>
+                        </div><!--//app-search-box-->
+
+                        <div class="app-utilities col-auto">
+                            <div class="app-utility-item app-notifications-dropdown dropdown">
+                                <a class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle"
+                                    data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"
+                                    title="Notifications">
+                                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon"
+                                    fill="currentColor" >
+                                    <path fill-rule="evenodd"
+                                        d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z" />
+                                    <path fill-rule="evenodd"
+                                        d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z" />
+                                </svg>
+                                  
+                                </a><!--//dropdown-toggle-->
+
+                                <div class="dropdown-menu p-0" aria-labelledby="notifications-dropdown-toggle">
+                                    <div class="dropdown-menu-header p-3">
+                                        <h5 class="dropdown-menu-title mb-0"><a href="/changepassword"> Change Password </a></h5>
+                                    </div><!--//dropdown-menu-title-->
+                                </div><!--//dropdown-menu-->
+                            </div><!--//app-utility-item-->
+                            <div class="app-utility-item">
+                                <a href="#" title="Settings">
+                                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bell icon"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z" />
+                                    <path fill-rule="evenodd"
+                                        d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                                </svg>                               
+                                </a>
+                            </div><!--//app-utility-item-->
+
+                            <div class="app-utility-item app-user-dropdown dropdown">
+                                <a href="/logout"><i class="fa fa-sign-out-alt " style="font-size: 20px;"></i></a>
+                            </div><!--//app-user-dropdown-->
+                        </div><!--//app-utilities-->
+                    </div><!--//row-->
+                </div><!--//app-header-content-->
+            </div><!--//container-fluid-->
+        </div><!--//app-header-inner-->
+        <div id="app-sidepanel" class="app-sidepanel">
+            <div id="sidepanel-drop" class="sidepanel-drop"></div>
+            <div class="sidepanel-inner d-flex flex-column">
+                <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+
+
+                <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+                    <div class="sidenav">
+                        <div class="profile">
+                            <div class="email mb-3 justify-content-center d-flex">
+                                <form action="/updateprofileimg" method="post" enctype="multipart/form-data">
+                                    <div class="mb-3 updateimg " >
+                                        <input type="hidden" name="id" value="<%= user.id %>">
+                                        <label class="" for="image">
+                                            <img src="<%= user.image %>" id="imagePreview" onchange="previewImage(this)" alt="" >
+                                            
+                                        </label>	
+                                        <input type="file" id="image" name="image" class=" d-none form-control" onchange="previewImage(this)">
+                                    </div>    
+                                    <button type="submit" class="btn btn-success btn-sm text-white">save</button>
+                                </form>
+							</div>
+                           
+
+                            <div class="name">
+                                <%= currentUser.name %>
+                            </div>
+                            <div class="job">
+                                <%= currentUser.qualification %>
+                            </div>
+                        </div>
+
+                        <div class="sidenav-url">
+                            <div class="url">
+                                <a href="/profile" class="active">Profile</a>
+                                <hr align="center">
+                            </div>
+                            <div class="url">
+                                <a href="/admin">Home</a>
+                                <hr align="center">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End -
+                </nav>//app-nav-->
+
+
+            </div><!--//sidepanel-inner-->
+        </div><!--//app-sidepanel-->
+    </header><!--//app-header-->
+
+    <!-- Main -->
+    <div class="main">
+        <h2>IDENTITY</h2>
+        <div class="card">
+            <form action="/updateprofile" method="post">
+                <div class="card-body">
+                    <table>
+                        <tbody>
+                            <input type="hidden" name="id" value="<%= user.id %>">
+                            <tr>
+                                <td>Name</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" name="name" value="<%= user.name %>" >
+                   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>:</td>
+                                <td><input type="text" name="email" value="<%= user.email %>" >
+        
+                                </td>
+                   
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" name="address" value="<%= user.address %>" >
+              
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Contact</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" name="contact" value="<%= user.contact %>" >
+                              
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Qualification</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" name="qualification" value="<%= user.qualification %>" >
+                              
+                                </td>
+                            </tr>
+                            <tr>LoginModel
+                                <td>Job role</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" name="role" value="<%= user.role %>" >
+                        
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit" style="font-size: 16px; border-radius: 7px;" class="btn btn-success text-white">save</button>
+              </div>
+            </form>
+        </div>
+
+        <h2>SOCIAL MEDIA</h2>
+        <div class="card">
+            <div class="card-body">
+             
+                <div class="social-media">
+                    <span class="fa-stack">
+                        <i class="fab fa-facebook "></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fab fa-twitter "></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fab fa-instagram "></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fab fa-invision "></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fab fa-github "></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fab fa-whatsapp "></i>
+                    </span>
+                    <span class="fa-stack fa-sm">
+                        <i class="fab fa-snapchat "></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+</body>
+
+</html>
+
+
+
+<footer class="app-footer">
+    <div class="container text-center py-3">
+        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+        <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart"
+                style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com"
+                target="_blank">Xiaoying Riley</a> for developers</small>
+
+    </div>
+</footer><!--//app-footer-->
+
+</div><!--//app-wrapper-->
+
+
+<!-- Javascript -->
+<script src="/public/assets/plugins/popper.min.js"></script>
+<script src="/public/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Charts JS -->
+<script src="/public/assets/plugins/chart.js/chart.min.js"></script>
+<script src="/public/assets/js/index-charts.js"></script>
+
+<!-- Page Specific JS -->
+<script src="/public/assets/js/app.js"></script>
+</body>
+<script>
+    function previewImage(input) {
+        const preview = document.getElementById('imagePreview');
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+</script>
+</html>
