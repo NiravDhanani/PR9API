@@ -10,12 +10,20 @@ const SubcategoryController = require('../controller/SubcategoryController');
 
 
 //subcategory routes 
-route.get('/subcategory',SubcategoryController.subcategoryPage)
+route.get('/subcategoryApi',SubcategoryController.subcategoryPage) // api
+
+
+route.delete('/deletesubcategory',SubcategoryController.deletesubcategory) //api
 route.get('/subcategoryAdd',SubcategoryController.subcategoryAdd)
 route.post('/newsubCategoryAdd',SubcategoryController.newsubCategoryAdd)
-route.get('/deletesubcategory',SubcategoryController.deletesubcategory)
 route.get('/editsubcategory',SubcategoryController.subcategoryEdit)
-route.post('/updatesubCategory',SubcategoryController.updatesubCategory)
+route.put('/updatesubCategory',SubcategoryController.updatesubCategory)
+
+// fetch Api 
+route.get('/subcategoryViewApi',SubcategoryController.subcategoryViewApi);
+route.post('/subcategoryCreateApi',SubcategoryController.subcategoryCreateApi);
+
+
 
 
 

@@ -7,11 +7,13 @@ const passport = require('passport')
 const passportLocal = require('./config/passportStrategy')
 const session = require('express-session')
 const cookie = require("cookie-parser");
-const flash = require('connect-flash')
+const flash = require('connect-flash');
+const axios = require('axios');
 
 
-app.set('view engine','ejs')
-
+app.set('view engine','ejs');
+app.use(express.json());
+// app.use(cors())
 app.use(cookie());
 app.use(session({
     name : 'xyz',
@@ -34,9 +36,9 @@ app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 app.use('/profiles',express.static(path.join(__dirname,'profiles')))
 app.use(express.urlencoded({extended : true}))
 
-app.use(passport.initialize());
-app.use(passport.session())
-app.use(passport.setuser);
+// app.use(passport.initialize());
+// app.use(passport.session())
+// app.use(passport.setuser);
 
 
 

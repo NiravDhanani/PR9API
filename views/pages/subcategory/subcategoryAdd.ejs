@@ -1,13 +1,13 @@
 <%- include('../header') %>
 <div class="container mt-4">
     <div class="row justify-content-center">
-        <form action="/newsubCategoryAdd" method="post"  class="col-md-8">
+        <form action="/subcategoryCreateApi" method="post"  class="col-md-8">
             <div class="mb-3">
                 <label for="title" class="form-label"> Category</label>
                 <select name="category" id="">
                     <option value="">--Category--</option>
                     <% category.map((val)=>{ %> 
-                        <option value="<%= val.id %>"><%= val.cat_name %></option>
+                        <option value="<%= val.id %>"><%= val.category %></option>
                     <%  }) %>
                 </select>
               
@@ -15,7 +15,7 @@
 
             <div class="mb-3">
                 <label for="title" class="form-label"> Sub-Category</label>
-                <input type="text" id="category" name="subcat_name" class="form-control">
+                <input type="text" id="category" name="subcategory" class="form-control">
             </div>
 
             <div class="text-center">

@@ -23,8 +23,8 @@ route.get('/',LoginController.loginPage)
 route.get('/admin',passport.checkUser,IndexPageController.AdminIndexPage)
 route.get('/signup',LoginController.signupPage);
 route.post('/registerUser',fileUpload,LoginController.registerUser);
-route.post('/loginUser',passport.authenticate('local',{failureRedirect : '/'}),LoginController.loginUser);
-route.get('/logout',passport.checkUser,LoginController.logout)
+route.post('/loginUser',LoginController.loginUser);
+route.get('/logout',LoginController.logout)
 
 route.get('/forgotpassword',LoginController.forgotpassword)
 route.post('/UserEmailCheck',LoginController.UserEmailCheck)

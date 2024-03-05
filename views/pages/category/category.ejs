@@ -34,18 +34,18 @@
                                         <%= i %>
                                     </td>
                                     <td>
-                                        <%= val.cat_name %>
+                                        <%= val.category %>
                                     </td>
                                     <td> 
                                        <% if(val.status === 1){ %> 
-                                        <a href="/activateCategory?id=<%= val.id %>" class="btn btn-success text-white">Active</a>
+                                        <a href="/activateCategory?id=<%= val._id %>" class="btn btn-success text-white">Active</a>
                                         <% }  else { %>
-                                            <a href="/deactivateCategory?id=<%= val.id %>" class="btn btn-danger text-white">Deactive</a>
+                                            <a href="/deactivateCategory?id=<%= val._id %>" class="btn btn-danger text-white">Deactive</a>
                                         <% } %>
                                     </td>
                                     <td>
-                                        <a href="/deleteCategory?id=<%= val.id %>" class="btn btn-danger text-white">Delete</a>
-                                        <a href="/editCategory?id=<%= val.id %>" class="btn btn-success text-white">Edit</a>
+                                        <a href="/deletecategoryApi?id=<%= val._id %>" class="btn btn-danger text-white">Delete</a>
+                                        <a href="/editcategoryApi?id=<%= val._id %>" class="btn btn-success text-white">Edit</a>
                                     </td>
                                 </tr>
                                 <% }) %>

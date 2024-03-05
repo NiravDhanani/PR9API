@@ -35,10 +35,11 @@ passport.deserializeUser(async(id,done)=>{
 
 passport.checkUser = (req,res,next)=>{
     try{
-        if(req.isAuthenticated()){
-            return next();
-        }
-        return res.redirect('/');
+        // if(req.isAuthenticated()){
+        //     return next();
+        // }
+        // return res.redirect('/');
+        return next()
     } catch (err){
         console.log(err);
         return false

@@ -1,12 +1,12 @@
 <%- include('../header') %>
 <div class="container mt-4">
     <div class="row justify-content-center">
-        <form action="/updatecategory" method="post"  class="col-md-8">
+        <form action="/updatecategoryApi" method="post"  class="col-md-8">
             
             <div class="mb-3">
-                <input type="hidden" name="id" value="<%= category.id %>" >
+                <input type="hidden" name="id" value="<%= single._id %>" >
                 <label for="title" class="form-label">Category</label>
-                <input type="text" id="category" name="cat_name"  value="<%= category.cat_name %>" class="form-control">
+                <input type="text" id="category" name="category"  value="<%= single.category %>" class="form-control">
             </div>
 
             <div class="text-center">

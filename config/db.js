@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost:27017/PR_8')
+mongoose.connect('mongodb://localhost:27017/PR_9API')
 
 const db = mongoose.connection;
 

@@ -5,7 +5,11 @@ const CategoryModel = mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : 'category',
     },
-    subcat_name : {
+    category : {
+        type: String,
+        require : true
+    },
+    subcategory : {
         type: String,
         require : true
     },
