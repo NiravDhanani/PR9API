@@ -15,17 +15,6 @@ const categoryAdd = async (req, res) => {
   }
 };
 
-// const categoryEdit = async (req, res) => {
-//   try {
-//     let category = await CategoryModel.findById(req.query.id);
-
-//     req.flash("success", "category edit");
-//     return res.render("pages/category/categoryEdit", { category });
-//   } catch (err) {
-//     console.log(err);
-//     return false;
-//   }
-// };
 
 // api routes
 // view

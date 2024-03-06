@@ -12,7 +12,6 @@ const SubcategoryController = require('../controller/SubcategoryController');
 //subcategory routes 
 route.get('/subcategoryApi',SubcategoryController.subcategoryPage) // api
 
-
 route.delete('/deletesubcategory',SubcategoryController.deletesubcategory) //api
 route.get('/subcategoryAdd',SubcategoryController.subcategoryAdd)
 route.post('/newsubCategoryAdd',SubcategoryController.newsubCategoryAdd)
