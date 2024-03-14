@@ -4,7 +4,7 @@
         <form action="/subcategoryCreateApi" method="post"  class="col-md-8">
             <div class="mb-3">
                 <label for="title" class="form-label"> Category</label>
-                <select name="category" id="">
+                <select name="categoryId" id="">
                     <option value="">--Category--</option>
                     <% category.map((val)=>{ %> 
                         <option value="<%= val.id %>"><%= val.category %></option>

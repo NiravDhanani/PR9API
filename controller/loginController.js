@@ -1,7 +1,8 @@
 const RegisterModel = require("../model/RegisterData");
-const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
+const { use } = require("passport");
+const jwt = require('jsonwebtoken')
 
 const loginPage = async (req, res) => {
   try {
@@ -24,47 +25,57 @@ const signupPage = async (req, res) => {
   }
 };
 
+// api create user
 const registerUser = async (req, res) => {
   try {
-    const {
-      name,
-      email,
-      password,
-      cpassword,
-      address,
-      contact,
-      qualification,
-      role,
-    } = req.body;
-    // let hash = await bcrypt.hash(password, 10);
-    let hashpassword = await bcrypt.hash(password, 10);
+    const { name, email, password, cpassword, address, contact, role } =
+      req.body;
+
     if (password == cpassword) {
-      await RegisterModel.create({
+      let user = await RegisterModel.create({
         name,
         email,
         address,
         contact,
-        qualification,
         role,
-        password: hashpassword,
+        password,
         image: req.file.path,
       });
-      return res.redirect("/");
+      return res.status(200).send({
+        success: true,
+        message: "User Create Successfully",
+        user: user,
+      });
     } else {
       console.log(`password not match`);
     }
   } catch (err) {
-    console.log(err);
-    return false;
+    return res.status(503).send({
+      success: false,
+      message: err,
+    });
   }
 };
 
+// api for loginuser
 const loginUser = async (req, res) => {
   try {
-    return res.redirect("/admin");
+  let {email,password}=req.body;
+  let user = await RegisterModel.findOne({email});
+  
+  let token = jwt.sign({paylod : user},"nd",{expiresIn : "1hr"});
+  return res.status(200).send({
+    success : true,
+    message : `log in successful token create`,
+    token : token,
+  })
+
   } catch (err) {
     console.log(err);
-    return false;
+    return res.status(503).send({
+      success: false,
+      message: err,
+    });
   }
 };
 
@@ -73,9 +84,15 @@ const logout = async (req, res) => {
     req.logout((err) => {
       if (err) {
         console.log(err);
-        return false;
+        return res.status(503).send({
+          success: false,
+          message: "user not authorize",
+        });
       }
-      return res.redirect("/");
+      return res.status(200).send({
+        success : true,
+        message : 'succefull logout',
+      });
     });
   } catch (err) {
     console.log(err);
@@ -92,11 +109,12 @@ const forgotpassword = async (req, res) => {
   }
 };
 
+// otp send  
 const UserEmailCheck = async (req, res) => {
   try {
     let email = req.body.email;
     let user = await RegisterModel.findOne({ email: email });
-
+    console.log(user);
     if (user) {
       let otp = Math.floor(Math.random() * 10000);
 
@@ -125,7 +143,13 @@ const UserEmailCheck = async (req, res) => {
             otp: otp,
             email: email,
           });
-          return res.redirect("/otp");
+          // return res.redirect("/otp");
+          // let mailotp = req.cookies.otp.otp;
+         return res.status(200).send({
+            success : true,
+            message : "email match otp send",
+            otp,
+          })
         }
       });
     } else {
@@ -147,20 +171,31 @@ const otp = async (req, res) => {
   }
 };
 
+// otp match api 
 const userOtp = async (req, res) => {
   try {
     let userotp = req.body.otp;
     let mailotp = req.cookies.otp.otp;
     if (userotp == mailotp) {
       console.log(`match`);
-      return res.redirect("/newpassword");
+      return res.status(200).send({
+        success : true,
+        message : 'otp match go ahed',
+        mailotp 
+      })
     } else {
       console.log(`wrong otp`);
-      return res.redirect("back");
+      return res.status(503).send({
+        success : false,
+        message : 'Wrong otp',
+        mailotp,
+      })
     }
   } catch (err) {
-    console.log(err);
-    return false;
+    return res.status(503).send({
+      success : false,
+      message : 'otp not match'
+    })
   }
 };
 
@@ -173,18 +208,27 @@ const newpassword = async (req, res) => {
   }
 };
 
+// new password api
 const createnewpassword = async (req, res) => {
   try {
     const { newpassword, cnewpassword } = req.body;
     if (newpassword == cnewpassword) {
-      let user = await RegisterModel.findOneAndUpdate({
-        password: await bcrypt.hash(req.body.newpassword, 10),
-      });
+      let user = await RegisterModel.findOneAndUpdate(
+        {email : req.cookies.otp.email},
+        {password : newpassword,}
+        );
       res.clearCookie("otp");
-      return res.redirect("/");
+      return res.status(200).send({
+        success : true,
+        message : 'Password Create',
+        user
+      })
     } else {
       console.log(`password not match`);
-      return res.redirect("back");
+      return res.status(503).send({
+          success : false,
+          message : 'Password not match'
+        })
     }
   } catch (err) {
     console.log(err);
@@ -193,7 +237,6 @@ const createnewpassword = async (req, res) => {
 };
 
 // profile page
-
 const profile = (req, res) => {
   try {
     return res.render("pages/profile/profile");
@@ -229,7 +272,6 @@ const updateprofile = async (req, res) => {
   }
 };
 
-
 const updateprofileimg = async (req, res) => {
   try {
     const id = req.body.id;
@@ -263,33 +305,32 @@ const updateprofileimg = async (req, res) => {
   }
 };
 
-const changepassword = async(req,res)=>{
-  try{
-    return res.render('pages/profile/chagepassword');
-  } catch(err){
+const changepassword = async (req, res) => {
+  try {
+    return res.render("pages/profile/chagepassword");
+  } catch (err) {
     console.log(err);
     return false;
   }
-}
+};
 
-const changeloginPassword = async(req,res)=>{
-  try{
-
-    let user =  await RegisterModel.findOne({ email : req.body.email});
-    let match = await bcrypt.compare(req.body.currentpassword , user.password);
-    if(match){
+const changeloginPassword = async (req, res) => {
+  try {
+    let user = await RegisterModel.findOne({ email: req.body.email });
+  
+    if (user.password == currentpassword) {
       await RegisterModel.findOneAndUpdate(
-        {email : req.body.email},
-        {password : await bcrypt.hash(req.body.npassword,10)}
-        )
+        { email: req.body.email },
+        { password: npassword }
+      );
     }
     console.log(`password change`);
-  return res.redirect('/profile')
-  } catch(err){
+    return res.redirect("/profile");
+  } catch (err) {
     console.log(err);
-    return false
+    return false;
   }
-}
+};
 module.exports = {
   signupPage,
   registerUser,

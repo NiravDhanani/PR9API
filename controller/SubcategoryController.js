@@ -25,7 +25,7 @@ const subcategoryPage = async (req, res) => {
 const newsubCategoryAdd = async (req, res) => {
   try {
     let subcat = await SubcategoryModel.create({
-      categoryId: req.body.category,
+      categoryId: req.body.categoryId,
       subcategory: req.body.subcategory,
     });
     return res.status(200).send({
@@ -66,7 +66,11 @@ const deletesubcategory = async (req, res) => {
     });
   }
 };
-
+//edit 
+const editsubcategory = async (req,res)=>{
+    const id = req.query.id;
+    console.log(id);
+}
 // update  
 const updatesubCategory = async (req, res) => {
   try {
@@ -118,7 +122,6 @@ const subcategoryViewApi = async (req, res) => {
   }
 };
 
-
 const subcategoryCreateApi = async (req, res) => {
   try {
     const { category, subcategory } = req.body;
@@ -143,10 +146,6 @@ const subcategoryCreateApi = async (req, res) => {
     });
   }
 };
-
-//////
-
-
 
 const subcategoryAdd = async (req, res) => {
   try {
@@ -176,8 +175,6 @@ const subcategoryEdit = async (req, res) => {
   }
 };
 
-
-
 module.exports = {
   subcategoryPage,
   subcategoryAdd,
@@ -189,4 +186,5 @@ module.exports = {
   // fetchApi
   subcategoryViewApi,
   subcategoryCreateApi,
+  editsubcategory,
 };

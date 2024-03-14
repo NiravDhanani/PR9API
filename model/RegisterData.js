@@ -13,11 +13,7 @@ const Userdata = mongoose.Schema({
         type:String,
         require : true,
     },
-    image:{
-        type:String,
-        require : true,
-    },
-    address : {
+     address : {
         type:String,
         require : true,
     },
@@ -25,7 +21,7 @@ const Userdata = mongoose.Schema({
         type:String,
         require : true,
     },
-    qualification : {
+    image : {
         type:String,
         require : true,
     },
